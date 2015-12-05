@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+        <group android:checkableBehavior="single">
+            <item
+                android:id="@+id/nd_exp"
+                android:icon="@mipmap/ic_attach_money_black_24dp"
+                android:title="@string/nd_expenses" />
+            <item
+                android:id="@+id/nd_cat"
+                android:icon="@mipmap/ic_dns_black_24dp"
+                android:title="@string/nd_categories" />
+            <item
+                android:id="@+id/nd_stat"
+                android:icon="@mipmap/ic_assessment_black_24dp"
+                android:title="@string/nd_statistics" />
+            <item
+                android:id="@+id/nd_sett"
+                android:icon="@mipmap/ic_settings_black_24dp"
+                android:title="@string/nd_settings" />
+        </group>
+
+
+    </menu>
