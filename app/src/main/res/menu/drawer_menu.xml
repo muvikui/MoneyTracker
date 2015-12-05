@@ -4,19 +4,19 @@
         <group android:checkableBehavior="single">
             <item
                 android:id="@+id/nd_exp"
-                android:icon="@drawable/ic_attach_money_black_24dp"
+                android:icon="@mipmap/ic_attach_money_black_24dp"
                 android:title="@string/nd_expenses" />
             <item
                 android:id="@+id/nd_cat"
-                android:icon="@drawable/ic_dns_black_24dp"
+                android:icon="@mipmap/ic_dns_black_24dp"
                 android:title="@string/nd_categories" />
             <item
                 android:id="@+id/nd_stat"
-                android:icon="@drawable/ic_assessment_black_24dp"
+                android:icon="@mipmap/ic_assessment_black_24dp"
                 android:title="@string/nd_statistics" />
             <item
                 android:id="@+id/nd_sett"
-                android:icon="@drawable/ic_settings_black_24dp"
+                android:icon="@mipmap/ic_settings_black_24dp"
                 android:title="@string/nd_settings" />
         </group>
 

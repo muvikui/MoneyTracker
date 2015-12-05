@@ -2,17 +2,14 @@ package com.loftschool.moneytracker;
 
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
-import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+
 import android.view.MenuItem;
-import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -20,20 +17,23 @@ public class MainActivity extends AppCompatActivity {
     private Toolbar toolbar;
     private CoordinatorLayout container;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setupDrawerLayout();
-        setupActionBar();
+        setupToolbar();
+        container = (CoordinatorLayout) findViewById(R.id.container);
         Log.d(TAG, "Activity was Created.");
     }
 
-    private void setupActionBar() {
+    private void setupToolbar() {
         toolbar =(Toolbar) findViewById(R.id.toolbar);
-        ActionBar actionBar = getSupportActionBar();
+        setSupportActionBar(toolbar);
+        android.support.v7.app.ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
-            actionBar.setHomeAsUpIndicator(R.drawable.ic_menu_black_24dp);
+            actionBar.setHomeAsUpIndicator(R.mipmap.ic_menu_white_24dp);
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
     }
@@ -72,9 +72,9 @@ public class MainActivity extends AppCompatActivity {
        NavigationView view = (NavigationView) findViewById(R.id.nav_view);
        view.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
            @Override
-       public boolean onNavigationItemSelected(MenuItem menuItem) {
-               Snackbar.make(container, "Выбран пункт " + menuItem.getTitle(), Snackbar.LENGTH_SHORT).show();
-               menuItem.setChecked(true);
+           public boolean onNavigationItemSelected(MenuItem Item) {
+               Snackbar.make(container, "Выбран пункт " + Item.getTitle(), Snackbar.LENGTH_SHORT).show();
+               Item.setChecked(true);
                drawerLayout.closeDrawers();
                return false;
            }
