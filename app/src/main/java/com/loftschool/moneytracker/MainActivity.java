@@ -1,28 +1,33 @@
 package com.loftschool.moneytracker;
 
 import android.os.Bundle;
-import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-
 import android.view.MenuItem;
+import android.widget.ListView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "LOG_TAG";
     private Toolbar toolbar;
-    private CoordinatorLayout container;
+    private ExpensesAdapter expensesAdapter;
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        container = (CoordinatorLayout) findViewById(R.id.container);
+        ListView expensesListView = (ListView) findViewById(R.id.list_view);
+        List<Expense> adapterData = getDatalist();
+        expensesAdapter = new ExpensesAdapter(this, adapterData);
+        expensesListView.setAdapter(expensesAdapter);
         setupDrawerLayout();
         setupToolbar();
 
@@ -38,35 +43,6 @@ public class MainActivity extends AppCompatActivity {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
     }
-    public void onStart() {
-        super.onStart();
-        Log.d(TAG, "Activity was Started.");
-    }
-
-    public void onRestart() {
-        super.onRestart();
-        Log.d(TAG, "Activity was Restarted.");
-    }
-
-    public void onResume() {
-        super.onResume();
-        Log.d(TAG, "Activity was Resumed.");
-    }
-
-    public void onPause() {
-        super.onPause();
-        Log.d(TAG, "Activity was Paused");
-    }
-
-    public void onStop() {
-        super.onStop();
-        Log.d(TAG, "Activity was Stopped.");
-    }
-
-    public void onDestroy() {
-        super.onDestroy();
-        Log.d(TAG, "Activity was Destroyed.");
-    }
 
     private void setupDrawerLayout() {
        final DrawerLayout drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -74,12 +50,20 @@ public class MainActivity extends AppCompatActivity {
        view.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
            @Override
            public boolean onNavigationItemSelected(MenuItem Item) {
-               Snackbar.make(container, "Выбран пункт " + Item.getTitle(), Snackbar.LENGTH_SHORT).show();
                Item.setChecked(true);
                drawerLayout.closeDrawers();
                return false;
            }
        });
    }
+
+    private List<Expense> getDatalist(){
+        List<Expense> data = new ArrayList<>();
+        data.add(new Expense("Telephone", "1000"));
+        data.add(new Expense("Clothes", "5000"));
+        data.add(new Expense("Flat", "3000"));
+        data.add(new Expense("PC", "5000"));
+        return data;
+    }
 
 }

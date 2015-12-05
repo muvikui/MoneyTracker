@@ -4,4 +4,6 @@
     <color name="colorPrimaryDark">#2e7d32</color>
     <color name="colorAccent">#f50057</color>
     <color name="nd_textcolor">#FFFFFFFF</color>
+    <color name="white">#FFFFFFFF</color>
+
 </resources>
