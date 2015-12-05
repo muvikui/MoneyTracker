@@ -17,7 +17,7 @@
         android:text="@string/name"
         android:textStyle="bold"
         android:paddingLeft="@dimen/header_spacing_large"
-        android:textColor="#FFFFFF"
+        android:textColor="@color/nd_textcolor"
         android:typeface="sans"/>
 
     <TextView
@@ -27,7 +27,7 @@
         android:layout_height="wrap_content"
         android:text="@string/email"
         android:paddingLeft="@dimen/header_spacing_large"
-        android:textColor="#FFFFFF"
+        android:textColor="@color/nd_textcolor"
         android:typeface="sans"/>
 
 </RelativeLayout>
