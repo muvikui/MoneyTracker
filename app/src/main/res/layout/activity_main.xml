@@ -14,13 +14,13 @@
             <include android:layout="@+id/toolbar"
                 layout="@layout/toolbar" />
 
-            <ListView
-                android:layout_below="@+id/toolbar"
-                android:padding="@dimen/activity_vertical_margin"
+            <FrameLayout
+                android:id="@+id/main_container"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:id="@+id/list_view">
-            </ListView>
+                android:layout_below="@+id/toolbar">
+
+            </FrameLayout>
         </RelativeLayout>
 
     <android.support.design.widget.NavigationView

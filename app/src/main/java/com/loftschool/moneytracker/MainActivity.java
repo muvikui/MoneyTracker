@@ -2,6 +2,7 @@ package com.loftschool.moneytracker;
 
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -17,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = "LOG_TAG";
     private Toolbar toolbar;
     private ExpensesAdapter expensesAdapter;
+    DrawerLayout drawerLayout;
 
 
 
@@ -24,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         ListView expensesListView = (ListView) findViewById(R.id.list_view);
         List<Expense> adapterData = getDatalist();
         expensesAdapter = new ExpensesAdapter(this, adapterData);
@@ -44,12 +47,26 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == android.R.id.home) {
+            drawerLayout.openDrawer(GravityCompat.START);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
     private void setupDrawerLayout() {
-       final DrawerLayout drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
        NavigationView view = (NavigationView) findViewById(R.id.nav_view);
        view.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
            @Override
            public boolean onNavigationItemSelected(MenuItem Item) {
+               if (Item.getItemId() == R.id.nd_exp) {
+
+               } else
+
                Item.setChecked(true);
                drawerLayout.closeDrawers();
                return false;
