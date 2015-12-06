@@ -12,19 +12,19 @@ import java.util.List;
 /**
  * Created by Muvikui on 05.12.2015.
  */
-public class ExpensesAdapter extends ArrayAdapter<Expense> {
-    public String colorString;
-    List<Expense> expenses;
-    public ExpensesAdapter(Context context, List<Expense> expenses) {
-        super(context, 0, expenses);
-        this.expenses = expenses;
+public class CategoriesAdapter extends ArrayAdapter<Category> {
+    List<Category> categories;
+
+    public CategoriesAdapter(Context context, int resource, Category[] objects) {
+        super(context, resource, objects);
     }
+
 
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
-        Expense expense = getItem(position);
+        Category category = getItem(position);
 
         if(convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.list_item, parent, false);
@@ -33,8 +33,8 @@ public class ExpensesAdapter extends ArrayAdapter<Expense> {
         TextView name = (TextView) convertView.findViewById(R.id.name_text);
         TextView sum = (TextView) convertView.findViewById(R.id.sum_text);
 
-        name.setText(expense.title);
-        sum.setText(expense.sum);
+        name.setText(category.category);
+        sum.setText(category.name);
 
         return convertView;
 

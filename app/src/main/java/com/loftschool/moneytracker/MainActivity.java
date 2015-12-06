@@ -64,16 +64,16 @@ public class MainActivity extends AppCompatActivity {
            public boolean onNavigationItemSelected(MenuItem Item) {
                switch (Item.getItemId()) {
                    case R.id.nd_exp:
-                       fragment = new Fragment();
+                       fragment = new ExpensesFragment();
                        break;
                    case R.id.nd_cat:
-                       fragment = new OtherFragment();
+                       fragment = new CategoriesFragment();
                        break;
                    case R.id.nd_stat:
-                       fragment = new OtherFragment();
+                       fragment = new StatisticsFragment();
                        break;
                    case R.id.nd_sett:
-                       fragment = new OtherFragment();
+                       fragment = new SettingsFragment();
                        break;
                    default:
                        break;

@@ -7,9 +7,12 @@ public class Expense {
     public String title;
     public String sum;
 
+
     public Expense(String title, String sum) {
         this.title = title;
         this.sum = sum;
+
     }
+
 }
 
