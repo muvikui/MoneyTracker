@@ -1,11 +1,10 @@
 package com.loftschool.moneytracker;
 
 
-import android.app.Fragment;
-import android.support.v4.app.Fragment;
-import android.app.FragmentManager;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -57,28 +56,32 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setupDrawerLayout() {
+
+        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
        final NavigationView view = (NavigationView) findViewById(R.id.nav_view);
        view.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
            @Override
            public boolean onNavigationItemSelected(MenuItem Item) {
-               switch (view.getId()) {
-                   case R.id.nd_exp
+               switch (Item.getItemId()) {
+                   case R.id.nd_exp:
+                       fragment = new Fragment();
+                       break;
+                   case R.id.nd_cat:
+                       fragment = new OtherFragment();
+                       break;
+                   case R.id.nd_stat:
+                       fragment = new OtherFragment();
+                       break;
+                   case R.id.nd_sett:
+                       fragment = new OtherFragment();
+                       break;
+                   default:
+                       break;
                }
-
-
-
-               if (Item.getItemId() == R.id.nd_exp) {
-                   fragment = new ExpensesFragment();
-                   //getSupportFragmentManager().beginTransaction().replace(R.id.main_container, new ExpensesFragment()).commit();
-               } else {
-                   fragment = new Fragment();
-
-
-               }
-               getSupportFragmentManager().beginTransaction().replace(R.id.main_container, fragment).addToBackStack(null).commit();
-               Item.setChecked(true);
-               drawerLayout.closeDrawers();
-               return false;
+                   getSupportFragmentManager().beginTransaction().replace(R.id.main_container, fragment).addToBackStack(null).commit();
+                   Item.setChecked(true);
+                   drawerLayout.closeDrawers();
+                   return false;
            }
        });
 
@@ -92,7 +95,5 @@ public class MainActivity extends AppCompatActivity {
             getSupportFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
         }
     }
+    }
 
-
-
-}
