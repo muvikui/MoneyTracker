@@ -14,7 +14,7 @@ import java.util.List;
 /**
  * Created by Muvikui on 05.12.2015.
  */
-public class ExpensesFragment extends Fragment {
+public class OtherFragment extends Fragment {
 
     private ExpensesAdapter expensesAdapter;
 
@@ -26,16 +26,15 @@ public class ExpensesFragment extends Fragment {
         List<Expense> adapterData = getDatalist();
         expensesAdapter = new ExpensesAdapter(getActivity(), adapterData);
         expensesListView.setAdapter(expensesAdapter);
-        getActivity().setTitle("Траты");
+        getActivity().setTitle("Не траты");
         return mainView;
     }
 
     private List<Expense> getDatalist(){
         List<Expense> data = new ArrayList<>();
-        data.add(new Expense("Telephone", "1000"));
-        data.add(new Expense("Clothes", "5000"));
-        data.add(new Expense("Flat", "3000"));
-        data.add(new Expense("PC", "5000"));
+        data.add(new Expense("Car", "1000"));
+        data.add(new Expense("Internet", "5000"));
+        data.add(new Expense("Credit", "3000"));
         return data;
     }
 }

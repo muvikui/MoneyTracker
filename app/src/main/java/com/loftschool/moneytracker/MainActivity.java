@@ -1,23 +1,23 @@
 package com.loftschool.moneytracker;
 
+
+import android.app.Fragment;
+import android.support.v4.app.Fragment;
+import android.app.FragmentManager;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.MenuItem;
-import android.widget.ListView;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "LOG_TAG";
     private Toolbar toolbar;
-    private ExpensesAdapter expensesAdapter;
+    private Fragment fragment;
+
     DrawerLayout drawerLayout;
 
 
@@ -27,18 +27,16 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ListView expensesListView = (ListView) findViewById(R.id.list_view);
-        List<Expense> adapterData = getDatalist();
-        expensesAdapter = new ExpensesAdapter(this, adapterData);
-        expensesListView.setAdapter(expensesAdapter);
+
         setupDrawerLayout();
         setupToolbar();
-
-        Log.d(TAG, "Activity was Created.");
+        if (savedInstanceState == null) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.main_container, new ExpensesFragment()).commit();
+        }
     }
 
     private void setupToolbar() {
-        toolbar =(Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar =(Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         android.support.v7.app.ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
@@ -59,28 +57,42 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setupDrawerLayout() {
-       NavigationView view = (NavigationView) findViewById(R.id.nav_view);
+       final NavigationView view = (NavigationView) findViewById(R.id.nav_view);
        view.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
            @Override
            public boolean onNavigationItemSelected(MenuItem Item) {
+               switch (view.getId()) {
+                   case R.id.nd_exp
+               }
+
+
+
                if (Item.getItemId() == R.id.nd_exp) {
+                   fragment = new ExpensesFragment();
+                   //getSupportFragmentManager().beginTransaction().replace(R.id.main_container, new ExpensesFragment()).commit();
+               } else {
+                   fragment = new Fragment();
 
-               } else
 
+               }
+               getSupportFragmentManager().beginTransaction().replace(R.id.main_container, fragment).addToBackStack(null).commit();
                Item.setChecked(true);
                drawerLayout.closeDrawers();
                return false;
            }
        });
+
    }
 
-    private List<Expense> getDatalist(){
-        List<Expense> data = new ArrayList<>();
-        data.add(new Expense("Telephone", "1000"));
-        data.add(new Expense("Clothes", "5000"));
-        data.add(new Expense("Flat", "3000"));
-        data.add(new Expense("PC", "5000"));
-        return data;
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        { android.support.v4.app.Fragment findingFragment = getSupportFragmentManager().findFragmentById(R.id.main_container);
+            if (findingFragment != null && findingFragment instanceof ExpensesFragment)
+            getSupportFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+        }
     }
+
+
 
 }
