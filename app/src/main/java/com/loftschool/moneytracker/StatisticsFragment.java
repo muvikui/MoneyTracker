@@ -7,17 +7,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-/**
- * Created by Muvikui on 05.12.2015.
- */
+
 public class StatisticsFragment extends Fragment {
 
     private ExpensesAdapter expensesAdapter;
+    View view;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-            getActivity().setTitle(R.string.nd_statistics);
-            return getView();
+        View view =  inflater.inflate(R.layout.statistics_fragment, container, false);
+        getActivity().setTitle(R.string.nd_statistics);
+            return view;
         }
 }
