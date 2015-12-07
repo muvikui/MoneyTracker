@@ -19,12 +19,14 @@ public class Expense {
 
 
     }
+
+    public void setSum(int sum) {
+        this.sum = sum;
+    }
     public String getSum() {
         return Integer.toString(sum);
     }
 
-    public void setSum(int sum) {
-       this.sum = sum;
-    }
+
 
 }
