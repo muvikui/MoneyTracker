@@ -11,9 +11,7 @@ import android.widget.ListView;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Muvikui on 05.12.2015.
- */
+
 public class ExpensesFragment extends Fragment {
 
     private ExpensesAdapter expensesAdapter;
