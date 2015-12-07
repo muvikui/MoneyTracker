@@ -27,13 +27,14 @@ public class ExpensesFragment extends Fragment {
         getActivity().setTitle(R.string.nd_expenses);
         return mainView;
     }
-
     private List<Expense> getDatalist(){
         List<Expense> data = new ArrayList<>();
-        data.add(new Expense("Telephone", "1000"));
-        data.add(new Expense("Clothes", "5000"));
-        data.add(new Expense("Flat", "3000"));
-        data.add(new Expense("PC", "5000"));
+        data.add(new Expense("Clothes", 1500));
+        data.add(new Expense("Flat", 3000));
+        data.add(new Expense("PC", 5000));
         return data;
     }
+
+
 }
+

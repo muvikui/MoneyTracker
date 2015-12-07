@@ -20,7 +20,6 @@ public class CategoriesAdapter extends ArrayAdapter<Category> {
     }
 
 
-
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
