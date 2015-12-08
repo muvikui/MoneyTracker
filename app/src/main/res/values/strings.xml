@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Money Tracker</string>
+    <string name="app_name">MoneyTracker</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
@@ -10,6 +10,4 @@
     <string name="nd_categories">Категории</string>
     <string name="nd_statistics">Статистика</string>
     <string name="nd_settings">Настройки</string>
-    <string name="fut_settings">Тут будут настройки...</string>
-    <string name="fut_statistics">Тут будут статистики...</string>
 </resources>
