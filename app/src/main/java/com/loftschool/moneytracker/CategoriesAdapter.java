@@ -1,10 +1,12 @@
 package com.loftschool.moneytracker;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.List;
@@ -15,8 +17,8 @@ import java.util.List;
 public class CategoriesAdapter extends ArrayAdapter<Category> {
     List<Category> categories;
 
-    public CategoriesAdapter(Context context, int resource, Category[] objects) {
-        super(context, resource, objects);
+    public CategoriesAdapter(Context context, List<Category> categories) {
+        super(context,0,categories);
     }
 
 
@@ -31,6 +33,8 @@ public class CategoriesAdapter extends ArrayAdapter<Category> {
 
         TextView name = (TextView) convertView.findViewById(R.id.name_text);
         TextView sum = (TextView) convertView.findViewById(R.id.sum_text);
+        RelativeLayout color_item = (RelativeLayout) convertView.findViewById(R.id.list_item);
+        color_item.setBackgroundColor(Color.parseColor("#FFFFBB33"));
 
         name.setText(category.category);
         sum.setText(category.name);
