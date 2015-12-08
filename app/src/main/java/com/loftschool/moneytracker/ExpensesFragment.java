@@ -1,7 +1,6 @@
 package com.loftschool.moneytracker;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 
@@ -16,7 +16,7 @@ public class ExpensesFragment extends Fragment {
 
     private ExpensesAdapter expensesAdapter;
 
-    @Nullable
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View mainView = inflater.inflate(R.layout.expenses_fragment, container, false);
@@ -29,9 +29,9 @@ public class ExpensesFragment extends Fragment {
     }
     private List<Expense> getDatalist(){
         List<Expense> data = new ArrayList<>();
-        data.add(new Expense("Clothes", 1500));
-        data.add(new Expense("Flat", 3000));
-        data.add(new Expense("PC", 5000));
+        data.add(new Expense("Clothes", new Date(), 1500));
+        data.add(new Expense("Flat", new Date(), 3000));
+        data.add(new Expense("PC",new Date(), 5000));
         return data;
     }
 
