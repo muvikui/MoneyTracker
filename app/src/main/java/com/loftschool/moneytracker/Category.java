@@ -5,13 +5,18 @@ package com.loftschool.moneytracker;
  */
 public class Category {
     public String category;
-    public String name;
+    public int number;
 
 
-    public Category(String category, String name) {
+    public Category(String category, int number) {
         this.category = category;
-        this.name = name;
+        this.number = number;
 
+    }
+
+    public String getNum() {
+
+        return Integer.toString(number);
     }
 
 }

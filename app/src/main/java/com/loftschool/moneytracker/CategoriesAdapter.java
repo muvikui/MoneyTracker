@@ -28,16 +28,16 @@ public class CategoriesAdapter extends ArrayAdapter<Category> {
         Category category = getItem(position);
 
         if(convertView == null) {
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.list_item, parent, false);
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.category_item, parent, false);
         }
 
         TextView name = (TextView) convertView.findViewById(R.id.name_text);
         TextView sum = (TextView) convertView.findViewById(R.id.sum_text);
-        RelativeLayout color_item = (RelativeLayout) convertView.findViewById(R.id.list_item);
+        RelativeLayout color_item = (RelativeLayout) convertView.findViewById(R.id.category_item);
         color_item.setBackgroundColor(Color.parseColor("#FFFFBB33"));
 
         name.setText(category.category);
-        sum.setText(category.name);
+        sum.setText(category.getNum());
 
         return convertView;
 

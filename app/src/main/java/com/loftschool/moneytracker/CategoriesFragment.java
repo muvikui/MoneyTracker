@@ -30,9 +30,9 @@ public class CategoriesFragment extends Fragment {
 
     private List<Category> getDatalist(){
         List<Category> data = new ArrayList<>();
-        data.add(new Category("Car", "1000"));
-        data.add(new Category("Internet", "5000"));
-        data.add(new Category("Credit", "3000"));
+        data.add(new Category("Car", 1000));
+        data.add(new Category("Internet", 1000));
+        data.add(new Category("Credit", 3000));
         return data;
     }
 }
