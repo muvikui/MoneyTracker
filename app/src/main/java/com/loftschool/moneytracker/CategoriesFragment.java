@@ -1,0 +1,38 @@
+package com.loftschool.moneytracker;
+
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ListView;
+
+import java.util.ArrayList;
+import java.util.List;
+
+
+public class CategoriesFragment extends Fragment {
+
+    private CategoriesAdapter categoriesAdapter;
+    public int adapterData_2;
+
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View mainView = inflater.inflate(R.layout.categories_fragment, container, false);
+        ListView categoriesListView = (ListView) mainView.findViewById(R.id.list_view);
+        List<Category> adapterData_2 = getDatalist();
+        CategoriesAdapter categoriesAdapter = new CategoriesAdapter(getActivity(), adapterData_2);
+        categoriesListView.setAdapter(categoriesAdapter);
+        getActivity().setTitle(R.string.nd_categories);
+        return mainView;
+    }
+
+    private List<Category> getDatalist(){
+        List<Category> data = new ArrayList<>();
+        data.add(new Category("Car", 1000));
+        data.add(new Category("Internet", 1000));
+        data.add(new Category("Credit", 3000));
+        return data;
+    }
+}
