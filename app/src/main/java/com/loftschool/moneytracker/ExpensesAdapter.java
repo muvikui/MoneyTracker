@@ -10,7 +10,6 @@ import java.util.List;
 
 public class ExpensesAdapter extends RecyclerView.Adapter<ExpensesAdapter.CardViewHolder> {
 
-    public static int list_color;
     List<Expense> expenses;
 
     public ExpensesAdapter(List<Expense> expenses) {

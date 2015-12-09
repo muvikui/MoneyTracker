@@ -20,7 +20,7 @@
         app:layout_anchor="@id/context_recyclerview"
         app:layout_anchorGravity="bottom|right|end"
         app:layout_behavior=".ScrollFABBehavior"
-        android:src="@mipmap/ic_dns_black_24dp"/>
+        android:src="@mipmap/ic_add_white_36dp"/>
 
 
 
