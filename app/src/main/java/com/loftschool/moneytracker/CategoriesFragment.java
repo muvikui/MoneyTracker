@@ -14,15 +14,15 @@ import java.util.List;
 public class CategoriesFragment extends Fragment {
 
     private CategoriesAdapter categoriesAdapter;
-    public int adapterData_2;
+    public int adapterData;
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View mainView = inflater.inflate(R.layout.categories_fragment, container, false);
         ListView categoriesListView = (ListView) mainView.findViewById(R.id.list_view);
-        List<Category> adapterData_2 = getDatalist();
-        CategoriesAdapter categoriesAdapter = new CategoriesAdapter(getActivity(), adapterData_2);
+        List<Category> adapterData = getDatalist();
+        CategoriesAdapter categoriesAdapter = new CategoriesAdapter(getActivity(), adapterData);
         categoriesListView.setAdapter(categoriesAdapter);
         getActivity().setTitle(R.string.nd_categories);
         return mainView;
