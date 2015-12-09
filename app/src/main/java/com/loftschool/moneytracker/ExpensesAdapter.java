@@ -1,7 +1,6 @@
 package com.loftschool.moneytracker;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,9 +10,11 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import static android.graphics.Color.rgb;
+
 public class ExpensesAdapter extends ArrayAdapter<Expense> {
 
-    public static int list_color;
+    private static int colorBackground;
     List<Expense> expenses;
 
     public ExpensesAdapter(Context context, List<Expense> expenses) {
@@ -33,11 +34,12 @@ public class ExpensesAdapter extends ArrayAdapter<Expense> {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.list_item, parent, false);
         }
 
-        RelativeLayout color_item = (RelativeLayout) convertView.findViewById(R.id.list_item);
+        RelativeLayout colorItem = (RelativeLayout) convertView.findViewById(R.id.list_item);
         TextView name = (TextView) convertView.findViewById(R.id.name_text);
         TextView sum = (TextView) convertView.findViewById(R.id.sum_text);
         TextView date = (TextView) convertView.findViewById(R.id.date_text);
-        color_item.setBackgroundColor(Color.parseColor("#FFFFBB33"));
+        colorBackground = rgb(randomColor(),randomColor(),randomColor());
+        colorItem.setBackgroundColor(colorBackground);
 
 
         name.setText(expense.title);
@@ -47,6 +49,12 @@ public class ExpensesAdapter extends ArrayAdapter<Expense> {
         return convertView;
 
 
+    }
+    public int randomColor() {
+
+        int color = (int)(0xff * Math.random());
+
+        return color;
     }
 
 
