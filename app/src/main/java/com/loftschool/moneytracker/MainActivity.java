@@ -87,13 +87,21 @@ public class MainActivity extends AppCompatActivity {
 
    }
 
-    @Override
+
     public void onBackPressed() {
         super.onBackPressed();
         { android.support.v4.app.Fragment findingFragment = getSupportFragmentManager().findFragmentById(R.id.main_container);
-            if (findingFragment != null && findingFragment instanceof ExpensesFragment)
-            getSupportFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
-        }
+            item
+            if (findingFragment != null && findingFragment instanceof ExpensesFragment) {
+                getSupportFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                item.setChecked(true);
+            }else if (findingFragment instanceof CategoriesFragment) {
+                item.setChecked(true);
+            }else if (findingFragment instanceof SettingsFragment) {
+                item.setChecked(true);
+            }else if (findingFragment instanceof StatisticsFragment) {
+                item.setChecked(true);
+
     }
-    }
+    }}}
 

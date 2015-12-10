@@ -36,7 +36,7 @@ public class CategoriesAdapter extends ArrayAdapter<Category> {
         TextView name = (TextView) convertView.findViewById(R.id.name_text);
         TextView sum = (TextView) convertView.findViewById(R.id.sum_text);
         RelativeLayout colorItem = (RelativeLayout) convertView.findViewById(R.id.category_item);
-        colorBackground = rgb(randomColor2(),randomColor2(),randomColor2());
+        colorBackground = rgb(getRandomColor(),getRandomColor(),getRandomColor());
         colorItem.setBackgroundColor(colorBackground);
 
         name.setText(category.category);
@@ -46,7 +46,7 @@ public class CategoriesAdapter extends ArrayAdapter<Category> {
 
 
     }
-    public int randomColor2() {
+    public int getRandomColor() {
 
         int color = (int)(0xff * Math.random());
 
