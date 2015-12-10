@@ -78,10 +78,10 @@ public class MainActivity extends AppCompatActivity {
                    default:
                        break;
                }
-                   getSupportFragmentManager().beginTransaction().replace(R.id.main_container, fragment).addToBackStack(null).commit();
-                   Item.setChecked(true);
-                   drawerLayout.closeDrawers();
-                   return false;
+               getSupportFragmentManager().beginTransaction().replace(R.id.main_container, fragment).addToBackStack(null).commit();
+               Item.setChecked(true);
+               drawerLayout.closeDrawers();
+               return false;
            }
        });
 
@@ -91,17 +91,22 @@ public class MainActivity extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
         { android.support.v4.app.Fragment findingFragment = getSupportFragmentManager().findFragmentById(R.id.main_container);
-            item
             if (findingFragment != null && findingFragment instanceof ExpensesFragment) {
                 getSupportFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
-                item.setChecked(true);
+                MenuItem mi = (MenuItem)findViewById(R.id.nd_exp);
+                mi.setChecked(true);
             }else if (findingFragment instanceof CategoriesFragment) {
-                item.setChecked(true);
+                MenuItem mi = (MenuItem)findViewById(R.id.nd_cat);
+                mi.setChecked(true);
             }else if (findingFragment instanceof SettingsFragment) {
-                item.setChecked(true);
+                MenuItem mi = (MenuItem)findViewById(R.id.nd_sett);
+                mi.setChecked(true);
             }else if (findingFragment instanceof StatisticsFragment) {
-                item.setChecked(true);
+                MenuItem mi = (MenuItem)findViewById(R.id.nd_stat);
+                mi.setChecked(true);
+            }
 
-    }
-    }}}
+    }}
+
+}
 
