@@ -9,10 +9,11 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.MenuItem;
 
 public class MainActivity extends AppCompatActivity {
-
+    
     private static final String TAG = "LOG_TAG";
     private Toolbar toolbar;
     private Fragment fragment;
@@ -56,10 +57,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setupDrawerLayout() {
-
+        NavigationView view = (NavigationView)findViewById(R.id.nav_view);
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-       final NavigationView view = (NavigationView) findViewById(R.id.nav_view);
-       view.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+        view.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
            @Override
            public boolean onNavigationItemSelected(MenuItem Item) {
                switch (Item.getItemId()) {
@@ -89,24 +89,27 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void onBackPressed() {
-        super.onBackPressed();
-        { android.support.v4.app.Fragment findingFragment = getSupportFragmentManager().findFragmentById(R.id.main_container);
+        NavigationView view = (NavigationView)findViewById(R.id.nav_view);
+        Menu menuItems = view.getMenu();
+        Fragment findingFragment = getSupportFragmentManager().findFragmentById(R.id.main_container);
             if (findingFragment != null && findingFragment instanceof ExpensesFragment) {
                 getSupportFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
-                MenuItem mi = (MenuItem)findViewById(R.id.nd_exp);
-                mi.setChecked(true);
-            }else if (findingFragment instanceof CategoriesFragment) {
-                MenuItem mi = (MenuItem)findViewById(R.id.nd_cat);
-                mi.setChecked(true);
-            }else if (findingFragment instanceof SettingsFragment) {
-                MenuItem mi = (MenuItem)findViewById(R.id.nd_sett);
-                mi.setChecked(true);
-            }else if (findingFragment instanceof StatisticsFragment) {
-                MenuItem mi = (MenuItem)findViewById(R.id.nd_stat);
-                mi.setChecked(true);
+                menuItems.findItem(R.id.nd_exp).setChecked(true);
+            } else if (findingFragment instanceof CategoriesFragment) {
+                menuItems.findItem(R.id.nd_cat).setChecked(true);
+            } else if (findingFragment instanceof StatisticsFragment) {
+                menuItems.findItem(R.id.nd_stat).setChecked(true);
+            } else if (findingFragment instanceof SettingsFragment) {
+                menuItems.findItem(R.id.nd_sett).setChecked(true);
             }
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+            } else {
+            super.onBackPressed();
+            }
+        }
 
-    }}
+    }
 
-}
 
