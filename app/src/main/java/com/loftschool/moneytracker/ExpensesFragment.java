@@ -41,7 +41,7 @@ public class ExpensesFragment extends Fragment {
             }
 
         });
-
+        Snackbar.make(mainView, "This is Expenses fragment.", Snackbar.LENGTH_SHORT).show();
         getActivity().setTitle(R.string.nd_expenses);
         return mainView;
     }
