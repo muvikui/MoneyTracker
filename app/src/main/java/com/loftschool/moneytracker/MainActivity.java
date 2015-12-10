@@ -1,36 +1,42 @@
 package com.loftschool.moneytracker;
 
+
 import android.os.Bundle;
-import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
-
+import android.view.Menu;
 import android.view.MenuItem;
 
 public class MainActivity extends AppCompatActivity {
-
+    
     private static final String TAG = "LOG_TAG";
     private Toolbar toolbar;
-    private CoordinatorLayout container;
+    private Fragment fragment;
+
+    DrawerLayout drawerLayout;
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        container = (CoordinatorLayout) findViewById(R.id.container);
+        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+
         setupDrawerLayout();
         setupToolbar();
-
-        Log.d(TAG, "Activity was Created.");
+        if (savedInstanceState == null) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.main_container, new ExpensesFragment()).commit();
+        }
     }
 
     private void setupToolbar() {
-        toolbar =(Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar =(Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         android.support.v7.app.ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
@@ -38,48 +44,72 @@ public class MainActivity extends AppCompatActivity {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
     }
-    public void onStart() {
-        super.onStart();
-        Log.d(TAG, "Activity was Started.");
-    }
 
-    public void onRestart() {
-        super.onRestart();
-        Log.d(TAG, "Activity was Restarted.");
-    }
 
-    public void onResume() {
-        super.onResume();
-        Log.d(TAG, "Activity was Resumed.");
-    }
-
-    public void onPause() {
-        super.onPause();
-        Log.d(TAG, "Activity was Paused");
-    }
-
-    public void onStop() {
-        super.onStop();
-        Log.d(TAG, "Activity was Stopped.");
-    }
-
-    public void onDestroy() {
-        super.onDestroy();
-        Log.d(TAG, "Activity was Destroyed.");
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == android.R.id.home) {
+            drawerLayout.openDrawer(GravityCompat.START);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     private void setupDrawerLayout() {
-       final DrawerLayout drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-       NavigationView view = (NavigationView) findViewById(R.id.nav_view);
-       view.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+        NavigationView view = (NavigationView)findViewById(R.id.nav_view);
+        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        view.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
            @Override
            public boolean onNavigationItemSelected(MenuItem Item) {
-               Snackbar.make(container, "Выбран пункт " + Item.getTitle(), Snackbar.LENGTH_SHORT).show();
+               switch (Item.getItemId()) {
+                   case R.id.nd_exp:
+                       fragment = new ExpensesFragment();
+                       break;
+                   case R.id.nd_cat:
+                       fragment = new CategoriesFragment();
+                       break;
+                   case R.id.nd_stat:
+                       fragment = new StatisticsFragment();
+                       break;
+                   case R.id.nd_sett:
+                       fragment = new SettingsFragment();
+                       break;
+                   default:
+                       break;
+               }
+               getSupportFragmentManager().beginTransaction().replace(R.id.main_container, fragment).addToBackStack(null).commit();
                Item.setChecked(true);
                drawerLayout.closeDrawers();
                return false;
            }
        });
+
    }
 
-}
+
+    public void onBackPressed() {
+        NavigationView view = (NavigationView)findViewById(R.id.nav_view);
+        Menu menuItems = view.getMenu();
+        Fragment findingFragment = getSupportFragmentManager().findFragmentById(R.id.main_container);
+            if (findingFragment != null && findingFragment instanceof ExpensesFragment) {
+                getSupportFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                menuItems.findItem(R.id.nd_exp).setChecked(true);
+            } else if (findingFragment instanceof CategoriesFragment) {
+                menuItems.findItem(R.id.nd_cat).setChecked(true);
+            } else if (findingFragment instanceof StatisticsFragment) {
+                menuItems.findItem(R.id.nd_stat).setChecked(true);
+            } else if (findingFragment instanceof SettingsFragment) {
+                menuItems.findItem(R.id.nd_sett).setChecked(true);
+            }
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+            } else {
+            super.onBackPressed();
+            }
+        }
+
+    }
+
+
