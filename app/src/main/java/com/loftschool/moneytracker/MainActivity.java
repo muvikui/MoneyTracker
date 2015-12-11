@@ -9,6 +9,7 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.MenuItem;
 
 public class MainActivity extends AppCompatActivity {
@@ -56,44 +57,62 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setupDrawerLayout() {
-
+        NavigationView view = (NavigationView)findViewById(R.id.nav_view);
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-       final NavigationView view = (NavigationView) findViewById(R.id.nav_view);
-       view.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-           @Override
-           public boolean onNavigationItemSelected(MenuItem Item) {
-               switch (Item.getItemId()) {
-                   case R.id.nd_exp:
-                       fragment = new ExpensesFragment();
-                       break;
-                   case R.id.nd_cat:
-                       fragment = new CategoriesFragment();
-                       break;
-                   case R.id.nd_stat:
-                       fragment = new StatisticsFragment();
-                       break;
-                   case R.id.nd_sett:
-                       fragment = new SettingsFragment();
-                       break;
-                   default:
-                       break;
-               }
-                   getSupportFragmentManager().beginTransaction().replace(R.id.main_container, fragment).addToBackStack(null).commit();
-                   Item.setChecked(true);
-                   drawerLayout.closeDrawers();
-                   return false;
-           }
-       });
+        view.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(MenuItem Item) {
+                switch (Item.getItemId()) {
+                    case R.id.nd_exp:
+                        fragment = new ExpensesFragment();
+                        break;
+                    case R.id.nd_cat:
+                        fragment = new CategoriesFragment();
+                        break;
+                    case R.id.nd_stat:
+                        fragment = new StatisticsFragment();
+                        break;
+                    case R.id.nd_sett:
+                        fragment = new SettingsFragment();
+                        break;
+                    default:
+                        break;
+                }
+                getSupportFragmentManager().beginTransaction().replace(R.id.main_container, fragment).addToBackStack(null).commit();
+                Item.setChecked(true);
+                drawerLayout.closeDrawers();
+                return false;
+            }
+        });
 
-   }
+    }
 
-    @Override
+
+
+
+
+
     public void onBackPressed() {
-        super.onBackPressed();
-        { android.support.v4.app.Fragment findingFragment = getSupportFragmentManager().findFragmentById(R.id.main_container);
-            if (findingFragment != null && findingFragment instanceof ExpensesFragment)
+        NavigationView view = (NavigationView)findViewById(R.id.nav_view);
+        Menu menu = view.getMenu();
+        Fragment findingFragment = getSupportFragmentManager().findFragmentById(R.id.main_container);
+        if (findingFragment != null && findingFragment instanceof ExpensesFragment) {
             getSupportFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+            menu.findItem(R.id.nd_exp).setChecked(true);
+        } else if (findingFragment instanceof CategoriesFragment) {
+            menu.findItem(R.id.nd_cat).setChecked(true);
+        } else if (findingFragment instanceof StatisticsFragment) {
+            menu.findItem(R.id.nd_stat).setChecked(true);
+        } else if (findingFragment instanceof SettingsFragment) {
+            menu.findItem(R.id.nd_sett).setChecked(true);
+        }
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
         }
     }
-    }
 
+
+}
