@@ -1,24 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-android:id="@+id/category_item"
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-android:padding="@dimen/activity_vertical_margin"
-android:background="@color/colorPrimary">
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view_cat="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/card_view_cat"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/card_view_height"
+    android:padding="@dimen/activity_vertical_margin"
+    android:layout_margin="@dimen/layout_margin"
+    card_view_cat:cardBackgroundColor="@color/white"
+    card_view_cat:cardCornerRadius="@dimen/card_corner_radius">
 
-<TextView
-    android:id="@+id/name_text"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="Name" />
+    <RelativeLayout style="@style/Container.Formatted"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
 
 
-<TextView
-    android:id="@+id/sum_text"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="Sum"
-    android:layout_alignParentRight="true"
-    android:layout_alignParentEnd="true"/>
+        <TextView
+            android:id="@+id/name_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Name" />
 
-</RelativeLayout>
+        <TextView
+            android:id="@+id/sum_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sum"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"/>
+    </RelativeLayout>
+
+
+    //
+</android.support.v7.widget.CardView>
