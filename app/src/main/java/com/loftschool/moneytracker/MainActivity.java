@@ -90,17 +90,17 @@ public class MainActivity extends AppCompatActivity {
 
     public void onBackPressed() {
         NavigationView view = (NavigationView)findViewById(R.id.nav_view);
-        Menu menuItems = view.getMenu();
+        Menu menu = view.getMenu();
         Fragment findingFragment = getSupportFragmentManager().findFragmentById(R.id.main_container);
             if (findingFragment != null && findingFragment instanceof ExpensesFragment) {
                 getSupportFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
-                menuItems.findItem(R.id.nd_exp).setChecked(true);
+                menu.findItem(R.id.nd_exp).setChecked(true);
             } else if (findingFragment instanceof CategoriesFragment) {
-                menuItems.findItem(R.id.nd_cat).setChecked(true);
+                menu.findItem(R.id.nd_cat).setChecked(true);
             } else if (findingFragment instanceof StatisticsFragment) {
-                menuItems.findItem(R.id.nd_stat).setChecked(true);
+                menu.findItem(R.id.nd_stat).setChecked(true);
             } else if (findingFragment instanceof SettingsFragment) {
-                menuItems.findItem(R.id.nd_sett).setChecked(true);
+                menu.findItem(R.id.nd_sett).setChecked(true);
             }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
@@ -109,6 +109,7 @@ public class MainActivity extends AppCompatActivity {
             super.onBackPressed();
             }
         }
+
 
     }
 
