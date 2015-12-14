@@ -38,7 +38,7 @@ public class ExpensesFragment extends Fragment {
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(),AddExpenseActivity.class);
+                Intent intent = new Intent(getActivity(),AddExpenseActivity_.class);
                 intent.putExtra("key", "value");
                 getActivity().startActivity(intent);
             }

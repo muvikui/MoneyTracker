@@ -71,10 +71,10 @@ public class MainActivity extends AppCompatActivity {
                        fragment = new CategoriesFragment();
                        break;
                    case R.id.nd_stat:
-                       fragment = new StatisticsFragment();
+                       fragment = new StatisticsFragment_();
                        break;
                    case R.id.nd_sett:
-                       fragment = new SettingsFragment();
+                       fragment = new SettingsFragment_();
                        break;
                    default:
                        break;

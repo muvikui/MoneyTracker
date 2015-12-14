@@ -23,7 +23,7 @@ public class AddExpenseActivity extends AppCompatActivity {
     @AfterViews
     void ready() {
         setSupportActionBar(toolbar);
-        if (getSupportActionBar() != null)
+        if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setTitle("Добавить трату");
     }
@@ -43,4 +43,4 @@ public class AddExpenseActivity extends AppCompatActivity {
 //         }
 //    }
 //
-}
+}}
