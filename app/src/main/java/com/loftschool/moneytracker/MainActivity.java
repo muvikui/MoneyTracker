@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
         setupDrawerLayout();
         setupToolbar();
         if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.main_container, new ExpensesFragment()).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.main_container, new ExpensesFragment_()).commit();
         }
     }
 
@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
            public boolean onNavigationItemSelected(MenuItem Item) {
                switch (Item.getItemId()) {
                    case R.id.nd_exp:
-                       fragment = new ExpensesFragment();
+                       fragment = new ExpensesFragment_();
                        break;
                    case R.id.nd_cat:
                        fragment = new CategoriesFragment();

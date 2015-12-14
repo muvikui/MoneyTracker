@@ -1,6 +1,5 @@
 package com.loftschool.moneytracker;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -11,42 +10,51 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.Click;
+import org.androidannotations.annotations.EFragment;
+import org.androidannotations.annotations.ViewById;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-
+@EFragment(R.layout.expenses_fragment)
 public class ExpensesFragment extends Fragment {
-
-    private ExpensesAdapter expensesAdapter;
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        final View mainView = inflater.inflate(R.layout.expenses_fragment, container, false);
-        RecyclerView expensesRecyclerView = (RecyclerView) mainView.findViewById(R.id.context_recyclerview);
-        List<Expense> adapterData = getDatalist();
-        expensesAdapter = new ExpensesAdapter(adapterData);
-        expensesRecyclerView.setAdapter(expensesAdapter);
+        View view = inflater.inflate(R.layout.expenses_fragment, container, false);
+        Snackbar.make(view, "This is Expenses fragment.", Snackbar.LENGTH_SHORT).show();
+        getActivity().setTitle(R.string.nd_expenses);
+        return view;
+    }
+    //@Finding//
 
+
+    @ViewById(R.id.context_recyclerview)
+    RecyclerView expensesRecyclerView;
+
+    @ViewById(R.id.fab)
+    FloatingActionButton floatingActionButton;
+    //@Finding//
+
+    @Click(R.id.fab)
+    void Click() {
+        // Starting the activity
+        AddExpenseActivity_.intent(this).start();
+    }
+
+
+    @AfterViews
+    void ready() {
+        List<Expense> adapterData = getDatalist();
+        ExpensesAdapter expensesAdapter = new ExpensesAdapter(adapterData);
+        expensesRecyclerView.setAdapter(expensesAdapter);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         expensesRecyclerView.setLayoutManager(linearLayoutManager);
 
-        FloatingActionButton floatingActionButton = (FloatingActionButton) mainView.findViewById(R.id.fab);
-
-        floatingActionButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(),AddExpenseActivity_.class);
-                intent.putExtra("key", "value");
-                getActivity().startActivity(intent);
-            }
-
-        });
-        Snackbar.make(mainView, "This is Expenses fragment.", Snackbar.LENGTH_SHORT).show();
-        getActivity().setTitle(R.string.nd_expenses);
-        return mainView;
     }
     private List<Expense> getDatalist(){
         List<Expense> data = new ArrayList<>();
@@ -55,6 +63,7 @@ public class ExpensesFragment extends Fragment {
         data.add(new Expense("PC",new Date(), 5000));
         return data;
     }
+
 
 
 }
