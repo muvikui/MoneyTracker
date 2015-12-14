@@ -10,41 +10,45 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.Click;
+import org.androidannotations.annotations.EFragment;
+import org.androidannotations.annotations.ViewById;
+
 import java.util.ArrayList;
 import java.util.List;
 
-
+@EFragment(R.layout.categories_fragment)
 public class CategoriesFragment extends Fragment {
-
-    private CategoriesAdapter categoriesAdapter;
-    private int adapterData;
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        final View mainViewCat = inflater.inflate(R.layout.categories_fragment, container, false);
-        RecyclerView categoriesRecyclerView = (RecyclerView) mainViewCat.findViewById(R.id.context_recyclerview_cat);
-        List<Category> adapterData = getDatalist();
+        View view = inflater.inflate(R.layout.categories_fragment, container, false);
         getActivity().setTitle(R.string.nd_categories);
-        categoriesAdapter = new CategoriesAdapter(adapterData);
+        return view;
+    }
+
+    //@Finding//
+    @ViewById(R.id.context_recyclerview_cat)
+    RecyclerView categoriesRecyclerView;
+
+    @ViewById(R.id.fab_cat)
+    FloatingActionButton floatingActionButton;
+    //@Finding//
+
+    @Click(R.id.fab_cat)
+    void Click() {
+
+        Snackbar.make(getView(), "Doesn't work yet.", Snackbar.LENGTH_SHORT).show();
+    }
+
+    @AfterViews
+    void ready() {
+        List<Category> adapterData = getDatalist();
+        CategoriesAdapter categoriesAdapter = new CategoriesAdapter(adapterData);
         categoriesRecyclerView.setAdapter(categoriesAdapter);
-
-
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         categoriesRecyclerView.setLayoutManager(linearLayoutManager);
-
-        FloatingActionButton floatingActionButton = (FloatingActionButton) mainViewCat.findViewById(R.id.fab_cat);
-
-        floatingActionButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Snackbar.make(mainViewCat, "Doesn't work yet.", Snackbar.LENGTH_SHORT).show();
-            }
-
-        });
-        return mainViewCat;
-
     }
 
     private List<Category> getDatalist(){

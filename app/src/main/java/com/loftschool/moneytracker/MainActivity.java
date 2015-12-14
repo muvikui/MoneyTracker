@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
                        fragment = new ExpensesFragment_();
                        break;
                    case R.id.nd_cat:
-                       fragment = new CategoriesFragment();
+                       fragment = new CategoriesFragment_();
                        break;
                    case R.id.nd_stat:
                        fragment = new StatisticsFragment_();
