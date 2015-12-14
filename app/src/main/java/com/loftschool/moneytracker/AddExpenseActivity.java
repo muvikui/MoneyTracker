@@ -25,22 +25,6 @@ public class AddExpenseActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        setTitle("Добавить трату");
+        setTitle(R.string.add_expense);
     }
-
-//    private Toolbar toolbar;
-//
-//    @Override
-//    protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_add_expense);
-//        toolbar = (Toolbar) findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar);
-//        Intent intent = getIntent();
-//        String value = intent.getStringExtra("key");
-//        if (getSupportActionBar() != null) {
-//            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-//         }
-//    }
-//
 }}
