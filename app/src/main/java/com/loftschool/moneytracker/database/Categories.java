@@ -24,7 +24,11 @@ public class Categories extends Model {
         this.name = name;
     }
 
-    public List<Expenses> expenses() {
-        return getMany(Expenses.class, "category");
+    public List<Categories> categories() {
+        return getMany(Categories.class, "category");
+    }
+
+    public String getName() {
+        return name;
     }
 }

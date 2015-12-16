@@ -1,4 +1,4 @@
-package com.loftschool.moneytracker;
+package com.loftschool.moneytracker.tools;
 
 import com.activeandroid.ActiveAndroid;
 import com.activeandroid.app.Application;

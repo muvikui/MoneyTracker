@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.activeandroid.query.Select;
+import com.loftschool.moneytracker.adapters.ExpensesAdapter;
 import com.loftschool.moneytracker.database.Categories;
 import com.loftschool.moneytracker.database.Expenses;
 
@@ -22,8 +23,6 @@ import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.ViewById;
 
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @EFragment(R.layout.expenses_fragment)
@@ -57,14 +56,12 @@ public class ExpensesFragment extends Fragment {
     void ready() {
         Categories categoryFun = new Categories("Fun");
         categoryFun.save();
-        Expenses expenses = new Expenses("123", "Cinema", "12.12.15", categoryFun);
+        Expenses expenses = new Expenses("321", "Cinema", "12.12.15", categoryFun);
         expenses.save();
 
-        //Expense expenses1 = getExpense();
 
-        List<Expenses> adapterData = getDataList();
-        ExpensesAdapter expensesAdapter = new ExpensesAdapter(adapterData);
-        expensesRecyclerView.setAdapter(expensesAdapter);
+
+
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         expensesRecyclerView.setLayoutManager(linearLayoutManager);
@@ -73,29 +70,35 @@ public class ExpensesFragment extends Fragment {
 
     @Override
     public void onResume() {
-        loadData();
         super.onResume();
+        loadData();
     }
 
-    private  void loadData() {
+
+    private void loadData() {
         getLoaderManager().restartLoader(0, null, new LoaderManager.LoaderCallbacks<List<Expenses>>() {
+
             @Override
             public Loader<List<Expenses>> onCreateLoader(int id, Bundle args) {
                 final AsyncTaskLoader<List<Expenses>> loader = new AsyncTaskLoader<List<Expenses>>(getActivity()) {
+
                     @Override
                     public List<Expenses> loadInBackground() {
+
                         return getDataList();
                     }
                 };
+
                 loader.forceLoad();
+
                 return loader;
             }
 
             @Override
             public void onLoadFinished(Loader<List<Expenses>> loader, List<Expenses> data) {
                 expensesRecyclerView.setAdapter(new ExpensesAdapter(data));
-
             }
+
 
             @Override
             public void onLoaderReset(Loader<List<Expenses>> loader) {
@@ -103,6 +106,7 @@ public class ExpensesFragment extends Fragment {
             }
         });
     }
+
     public List<Expenses> getDataList() {
         return new Select()
                 .from(Expenses.class)
