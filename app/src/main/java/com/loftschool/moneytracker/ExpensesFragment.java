@@ -1,11 +1,10 @@
 package com.loftschool.moneytracker;
 
-import android.content.AsyncTaskLoader;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
+import android.support.v4.content.AsyncTaskLoader;
 import android.support.v4.content.Loader;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -25,16 +24,10 @@ import org.androidannotations.annotations.ViewById;
 
 import java.util.List;
 
-@EFragment(R.layout.expenses_fragment)
+@EFragment
 public class ExpensesFragment extends Fragment {
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.expenses_fragment, container, false);
-        Snackbar.make(view, "This is Expenses fragment.", Snackbar.LENGTH_SHORT).show();
-        getActivity().setTitle(R.string.nd_expenses);
-        return view;
-    }
+
     //@Finding//
 
 
@@ -59,14 +52,20 @@ public class ExpensesFragment extends Fragment {
         Expenses expenses = new Expenses("321", "Cinema", "12.12.15", categoryFun);
         expenses.save();
 
-
-
-
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         expensesRecyclerView.setLayoutManager(linearLayoutManager);
 
     }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        final View view = inflater.inflate(R.layout.expenses_fragment, container, false);
+        getActivity().setTitle(R.string.nd_expenses);
+        return view;
+    }
+
+
 
     @Override
     public void onResume() {

@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.loftschool.moneytracker.R;
+import com.loftschool.moneytracker.database.Categories;
 
 import java.util.List;
 
@@ -15,9 +16,9 @@ import java.util.List;
  */
 public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.CardViewHolder> {
 
-    List<Category> categories;
+    List<Categories> categories;
 
-    public CategoriesAdapter(List<Category> categories) {
+    public CategoriesAdapter(List<Categories> categories) {
         this.categories = categories;
     }
 
@@ -29,10 +30,9 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Ca
 
     @Override
     public void onBindViewHolder(CardViewHolder holder, int position) {
-        Category category = categories.get(position);
+        Categories category = categories.get(position);
 
-        holder.name_text.setText(category.category);
-        holder.sum_text.setText(category.getNum());
+        holder.name_text.setText(category.name);
 
     }
 
@@ -43,12 +43,10 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Ca
 
     public class CardViewHolder extends RecyclerView.ViewHolder {
         protected TextView name_text;
-        protected TextView sum_text;
 
         public CardViewHolder(View convertView) {
             super(convertView);
             name_text = (TextView) convertView.findViewById(R.id.name_text);
-            sum_text = (TextView) convertView.findViewById(R.id.sum_text);
 
         }
     }

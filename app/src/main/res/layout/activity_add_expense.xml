@@ -22,6 +22,7 @@
             />
         <EditText
             android:hint="1000"
+            android:inputType="number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
         <TextView
@@ -41,10 +42,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             />
-        <Spinner
+            <Spinner
             android:hint="456"
+                android:id="@+id/spinner"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+                android:gravity="fill">
+
+            </Spinner>
         <TextView
             android:gravity="fill"
             android:text="Дата"

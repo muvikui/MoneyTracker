@@ -15,9 +15,6 @@ public class Categories extends Model {
     @Column(name = "name")
     public String name;
 
-    public Categories() {
-        super();
-    }
 
     public Categories(String name) {
         super();
@@ -25,10 +22,12 @@ public class Categories extends Model {
     }
 
     public List<Categories> categories() {
+
         return getMany(Categories.class, "category");
     }
 
     public String getName() {
+
         return name;
     }
 }

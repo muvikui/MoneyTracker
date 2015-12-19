@@ -1,11 +1,11 @@
 package com.loftschool.moneytracker;
 
-import android.content.AsyncTaskLoader;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
+import android.support.v4.content.AsyncTaskLoader;
 import android.support.v4.content.Loader;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -17,13 +17,11 @@ import com.activeandroid.query.Select;
 import com.loftschool.moneytracker.adapters.CategoriesAdapter;
 import com.loftschool.moneytracker.database.Categories;
 
-
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.ViewById;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @EFragment(R.layout.categories_fragment)
@@ -50,6 +48,13 @@ public class CategoriesFragment extends Fragment {
     }
 
     @AfterViews
+
+    void ready() {
+
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
+        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        categoriesRecyclerView.setLayoutManager(linearLayoutManager);
+    }
 
     @Override
     public void onResume() {
@@ -96,10 +101,5 @@ public class CategoriesFragment extends Fragment {
                 .execute();
     }
 
-    void ready() {
 
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
-        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        categoriesRecyclerView.setLayoutManager(linearLayoutManager);
-    }
 }
