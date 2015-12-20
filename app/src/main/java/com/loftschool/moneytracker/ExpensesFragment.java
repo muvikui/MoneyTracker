@@ -14,7 +14,6 @@ import android.view.ViewGroup;
 
 import com.activeandroid.query.Select;
 import com.loftschool.moneytracker.adapters.ExpensesAdapter;
-import com.loftschool.moneytracker.database.Categories;
 import com.loftschool.moneytracker.database.Expenses;
 
 import org.androidannotations.annotations.AfterViews;
@@ -29,7 +28,7 @@ public class ExpensesFragment extends Fragment {
 
 
     //@Finding//
-
+    ExpensesAdapter expensesAdapter;
 
     @ViewById(R.id.context_recyclerview)
     RecyclerView expensesRecyclerView;
@@ -47,11 +46,6 @@ public class ExpensesFragment extends Fragment {
 
     @AfterViews
     void ready() {
-        Categories categoryFun = new Categories("Fun");
-        categoryFun.save();
-        Expenses expenses = new Expenses("321", "Cinema", "12.12.15", categoryFun);
-        expenses.save();
-
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         expensesRecyclerView.setLayoutManager(linearLayoutManager);
@@ -111,9 +105,5 @@ public class ExpensesFragment extends Fragment {
                 .from(Expenses.class)
                 .execute();
     }
-
-
-
-
 }
 

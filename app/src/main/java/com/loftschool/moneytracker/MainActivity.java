@@ -11,6 +11,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
+import com.loftschool.moneytracker.database.Categories;
+
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "LOG_TAG";
@@ -26,6 +28,16 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+
+        Categories categoryFun = new Categories("Fun");
+        categoryFun.save();
+        Categories categoryTelephone = new Categories("Telephone");
+        categoryTelephone.save();
+        Categories categoryFood = new Categories("Food");
+        categoryFood.save();
+        Categories categoryHouse = new Categories("House");
+        categoryHouse.save();
+
 
         setupDrawerLayout();
         setupToolbar();
