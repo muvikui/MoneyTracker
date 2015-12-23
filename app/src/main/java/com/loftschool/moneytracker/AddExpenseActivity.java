@@ -2,15 +2,18 @@ package com.loftschool.moneytracker;
 
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
+import com.activeandroid.query.Select;
 import com.loftschool.moneytracker.adapters.AddExpSpinnerAdapter;
+import com.loftschool.moneytracker.database.Categories;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.OptionsItem;
 import org.androidannotations.annotations.ViewById;
+
+import java.util.List;
 
 @EActivity(R.layout.activity_add_expense)
 public class AddExpenseActivity extends AppCompatActivity {
@@ -34,18 +37,15 @@ public class AddExpenseActivity extends AppCompatActivity {
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setTitle(R.string.add_expense);
+            AddExpSpinnerAdapter addExpSpinnerAdapter = new AddExpSpinnerAdapter(this, getDataList());
+            spinner.setAdapter(addExpSpinnerAdapter);
         }
+    }
 
-
-        Spinner spinner = (Spinner) findViewById(R.id.spinner);
-        ArrayAdapter<AddExpSpinnerAdapter> adapter = new ArrayAdapter<AddExpSpinnerAdapter>(this, android.R.layout.simple_spinner_item, categories());
-        // Определяем разметку для использования при выборе элемента
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        // Применяем адаптер к элементу spinner
-        spinner.setAdapter(adapter);
-
-
-
-        };
+    private List<Categories> getDataList() {
+        return new Select()
+                .from(Categories.class)
+                .execute();
+    }
 
 }

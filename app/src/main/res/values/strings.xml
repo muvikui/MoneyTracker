@@ -13,4 +13,7 @@
     <string name="fut_settings">Тут будут настройки...</string>
     <string name="fut_statistics">Тут будут статистики...</string>
     <string name="add_expense">Добавить трату</string>
+    <string name="type_name">Имя пользователя</string>
+    <string name="type_password">Пароль</string>
+    <string name="to_register">Зарегистрироваться</string>
 </resources>

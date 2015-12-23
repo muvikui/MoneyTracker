@@ -15,6 +15,8 @@ import android.view.ViewGroup;
 import com.activeandroid.query.Select;
 import com.loftschool.moneytracker.adapters.ExpensesAdapter;
 import com.loftschool.moneytracker.database.Expenses;
+import com.loftschool.moneytracker.rest.RestService;
+import com.loftschool.moneytracker.rest.UserRegistrationModel;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Click;
@@ -104,6 +106,12 @@ public class ExpensesFragment extends Fragment {
         return new Select()
                 .from(Expenses.class)
                 .execute();
+    }
+
+    public void registerUser() {
+        RestService restService = new RestService();
+        UserRegistrationModel userRegistrationModel = restService.register("muvikui", "muvikui10");
+
     }
 }
 
