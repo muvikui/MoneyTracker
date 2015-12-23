@@ -48,7 +48,7 @@ public class RegistrationActivity extends AppCompatActivity {
     @Click(R.id.registration_button)
     void click(View view) {
         if (!isConnected) {
-            Snackbar.make(view, "No internet connection.", Snackbar.LENGTH_SHORT).show();
+            Snackbar.make(view, R.string.no_internet, Snackbar.LENGTH_SHORT).show();
         }
         else {
             registerUser(view);
@@ -63,10 +63,15 @@ public class RegistrationActivity extends AppCompatActivity {
         RestService restService = new RestService();
         UserRegistrationModel userRegistrationModel = restService.register(stringUserName, stringPassword);
 
+        if(user_name.length() < 5 || password.length() < 5) {
+            Snackbar.make(view, R.string.lengthen_error, Snackbar.LENGTH_LONG).show();
+            return;
+        } else {
+
         switch (userRegistrationModel.getStatus()) {
 
             case "Login busy already":
-                Snackbar.make(view, "This login is used already.", Snackbar.LENGTH_LONG).show();
+                Snackbar.make(view, R.string.login_used, Snackbar.LENGTH_LONG).show();
                 break;
 
             case "success":
@@ -75,10 +80,9 @@ public class RegistrationActivity extends AppCompatActivity {
                 return;
 
             default:
-                Snackbar.make(view, "Unknown error.", Snackbar.LENGTH_LONG).show();
                 break;
 
         }
 
     }
-}
+}}

@@ -16,4 +16,9 @@
     <string name="type_name">Имя пользователя</string>
     <string name="type_password">Пароль</string>
     <string name="to_register">Зарегистрироваться</string>
+    <string name="no_internet">No internet connection.</string>
+    <string name="login_busy">Login busy already</string>
+    <string name="login_used">This login is used already.</string>
+    <string name="success">success</string>
+    <string name="lengthen_error">Login and password must be longer than 5 characters.</string>
 </resources>
