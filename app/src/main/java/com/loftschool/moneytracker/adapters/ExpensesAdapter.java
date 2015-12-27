@@ -1,4 +1,4 @@
-package com.loftschool.moneytracker;
+package com.loftschool.moneytracker.adapters;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -6,12 +6,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.loftschool.moneytracker.R;
+import com.loftschool.moneytracker.database.Expenses;
+
 import java.util.List;
 public class ExpensesAdapter extends RecyclerView.Adapter<ExpensesAdapter.CardViewHolder> {
 
-    List<Expense> expenses;
+    List<Expenses> expenses;
 
-    public ExpensesAdapter(List<Expense> expenses) {
+    public ExpensesAdapter(List<Expenses> expenses) {
         this.expenses = expenses;
     }
 
@@ -23,11 +26,11 @@ public class ExpensesAdapter extends RecyclerView.Adapter<ExpensesAdapter.CardVi
 
     @Override
     public void onBindViewHolder(CardViewHolder holder, int position) {
-        Expense expense = expenses.get(position);
+        Expenses expense = expenses.get(position);
 
-        holder.name_text.setText(expense.title);
-        holder.sum_text.setText(expense.getSum());
-        holder.date_text.setText(expense.getDateList(expense.getDate()));
+        holder.name_text.setText(expense.name);
+        holder.sum_text.setText(expense.price);
+
 
     }
 
